@@ -1,0 +1,45 @@
+<h1>User Registration Form</h1>
+
+<div class="main-container">
+    <div class="form-container">
+        <h1>Personal Information</h1>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" [(ngModel)]="newUser.name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" [(ngModel)]="newUser.dateOfBirth" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="location">Location:</label>
+                <input type="text" id="location" name="location" [(ngModel)]="newUser.location" required>
+            </div>
+            
+            <button type="submit">{{ editMode ? 'Update' : 'Add' }}</button>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table class="data-table">
+            <tr>
+                <th>Name</th>
+                <th>Date Of Birth</th>
+                <th>Location</th>
+                <th>Actions</th>
+            </tr>
+            <tr *ngFor="let user of users; trackBy: trackByUserId">
+                <td>{{ user.name }}</td>
+                <td>{{ user.dateOfBirth }}</td>
+                <td>{{ user.location }}</td>
+                <td>
+                    <button (click)="onEdit(user)">Edit</button>
+                    <button (click)="onDelete(user.id)">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
